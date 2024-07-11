@@ -1,4 +1,4 @@
-package de.niklasmerz.cordova.biometric;
+package android;
 
 import android.os.Bundle;
 

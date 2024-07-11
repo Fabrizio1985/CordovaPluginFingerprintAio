@@ -1,4 +1,4 @@
-package de.niklasmerz.cordova.biometric;
+package android;
 
 import android.content.Context;
 import android.os.Build;
@@ -84,7 +84,7 @@ class CryptographyManagerImpl implements CryptographyManager {
                     .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
                     .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
                     .setKeySize(KEY_SIZE)
-                    .setUserAuthenticationRequired(true);
+                    .setUserAuthenticationRequired(false);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 keyGenParamsBuilder.setInvalidatedByBiometricEnrollment(invalidateOnEnrollment);

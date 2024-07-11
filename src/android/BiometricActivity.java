@@ -1,4 +1,4 @@
-package de.niklasmerz.cordova.biometric;
+package android;
 
 import android.app.Activity;
 import android.app.KeyguardManager;
@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
+import androidx.biometric.BiometricManager;
 
 import java.util.concurrent.Executor;
 
@@ -91,8 +92,11 @@ public class BiometricActivity extends AppCompatActivity {
                 .setTitle(mPromptInfo.getTitle())
                 .setSubtitle(mPromptInfo.getSubtitle())
                 .setConfirmationRequired(mPromptInfo.getConfirmationRequired())
-                .setDescription(mPromptInfo.getDescription());
-
+                .setDescription(mPromptInfo.getDescription())
+                .setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_STRONG | BiometricManager.Authenticators.DEVICE_CREDENTIAL)
+        		.setDeviceCredentialAllowed(true);
+        
+        /*
         if (mPromptInfo.isDeviceCredentialAllowed()
                 && mPromptInfo.getType() == BiometricActivityType.JUST_AUTHENTICATE
                 && Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) { // TODO: remove after fix https://issuetracker.google.com/issues/142740104
@@ -100,6 +104,7 @@ public class BiometricActivity extends AppCompatActivity {
         } else {
             promptInfoBuilder.setNegativeButtonText(mPromptInfo.getCancelButtonTitle());
         }
+        */
         return promptInfoBuilder.build();
     }
 

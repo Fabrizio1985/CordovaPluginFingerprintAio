@@ -40,7 +40,7 @@
 
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="Fingerprint">
-        <param name="android-package" value="de.niklasmerz.cordova.biometric.Fingerprint"/>
+        <param name="android-package" value="android.Fingerprint"/>
       </feature>
     </config-file>
 
@@ -50,7 +50,7 @@
     </config-file>
 
     <config-file target="AndroidManifest.xml" parent="application">
-      <activity android:name="de.niklasmerz.cordova.biometric.BiometricActivity" android:theme="@style/TransparentTheme" android:exported="false"/>
+      <activity android:name="android.BiometricActivity" android:theme="@style/TransparentTheme" android:exported="false"/>
     </config-file>
 
     <framework src="src/android/build.gradle" custom="true" type="gradleReference"/>
