@@ -7,6 +7,7 @@ import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
 import androidx.annotation.RequiresApi;
+import androidx.biometric.BiometricManager;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
@@ -81,10 +82,13 @@ class CryptographyManagerImpl implements CryptographyManager {
             // if you reach here, then a new SecretKey must be generated for that keyName
             KeyGenParameterSpec.Builder keyGenParamsBuilder = new KeyGenParameterSpec.Builder(keyName,
                     KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
-                    .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
-                    .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
-                    .setKeySize(KEY_SIZE)
-                    .setUserAuthenticationRequired(false);
+            		 .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
+                     .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
+                    .setKeySize(KEY_SIZE);
+            
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
+            	keyGenParamsBuilder.setUserAuthenticationRequired(false);
+            }
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 keyGenParamsBuilder.setInvalidatedByBiometricEnrollment(invalidateOnEnrollment);

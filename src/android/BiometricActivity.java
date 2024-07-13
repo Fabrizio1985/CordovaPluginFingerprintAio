@@ -92,19 +92,19 @@ public class BiometricActivity extends AppCompatActivity {
                 .setTitle(mPromptInfo.getTitle())
                 .setSubtitle(mPromptInfo.getSubtitle())
                 .setConfirmationRequired(mPromptInfo.getConfirmationRequired())
-                .setDescription(mPromptInfo.getDescription())
-                .setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_STRONG | BiometricManager.Authenticators.DEVICE_CREDENTIAL)
-        		.setDeviceCredentialAllowed(true);
+                .setDescription(mPromptInfo.getDescription());
         
-        /*
         if (mPromptInfo.isDeviceCredentialAllowed()
-                && mPromptInfo.getType() == BiometricActivityType.JUST_AUTHENTICATE
-                && Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) { // TODO: remove after fix https://issuetracker.google.com/issues/142740104
-            promptInfoBuilder.setDeviceCredentialAllowed(true);
-        } else {
+                && Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) { // TODO: remove after fix https://issuetracker.google.com/issues/142740104
+        	
+            promptInfoBuilder.setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_STRONG);
             promptInfoBuilder.setNegativeButtonText(mPromptInfo.getCancelButtonTitle());
+            
+        } else {
+        	promptInfoBuilder.setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_STRONG | BiometricManager.Authenticators.DEVICE_CREDENTIAL);
+        	//promptInfoBuilder.setNegativeButtonText(mPromptInfo.getCancelButtonTitle());
         }
-        */
+     
         return promptInfoBuilder.build();
     }
 
