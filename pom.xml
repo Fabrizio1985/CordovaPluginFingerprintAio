@@ -20,14 +20,14 @@
 	</properties>
 
 	<dependencies>
-
+	
 		<dependency>
 			<groupId>it.fabrizio</groupId>
 			<artifactId>cordova-android-source</artifactId>
-			<version>33.0.0</version>
+			<version>13.0.0</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.github.tony19</groupId>
 			<artifactId>logback-android-core</artifactId>
